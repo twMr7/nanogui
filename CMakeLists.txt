@@ -89,6 +89,12 @@ if (MSVC)
   # Disable annoying MSVC warnings (all targets)
   add_definitions(/D "_CRT_SECURE_NO_WARNINGS")
 
+  # Default to use Unicode instead of MBCS
+  add_definitions(-DUNICODE -D_UNICODE)
+
+  # Disable annoying compiler warnings
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4819")
+
   # Parallel build on MSVC (all targets)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
 

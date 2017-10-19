@@ -176,7 +176,7 @@ loadImageDirectory(NVGcontext *ctx, const std::string &path) {
     while ((ep = readdir(dp))) {
         const char *fname = ep->d_name;
 #else
-    WIN32_FIND_DATA ffd;
+    WIN32_FIND_DATAA ffd;
     std::string searchPath = path + "/*.*";
     HANDLE handle = FindFirstFileA(searchPath.c_str(), &ffd);
     if (handle == INVALID_HANDLE_VALUE)
@@ -215,9 +215,9 @@ std::vector<std::string> file_dialog(const std::vector<std::pair<std::string, st
     }
 
 #if defined(_WIN32)
-    OPENFILENAME ofn;
-    ZeroMemory(&ofn, sizeof(OPENFILENAME));
-    ofn.lStructSize = sizeof(OPENFILENAME);
+    OPENFILENAMEA ofn;
+    ZeroMemory(&ofn, sizeof(OPENFILENAMEA));
+    ofn.lStructSize = sizeof(OPENFILENAMEA);
     char tmp[FILE_DIALOG_MAX_BUFFER];
     ofn.lpstrFile = tmp;
     ZeroMemory(tmp, FILE_DIALOG_MAX_BUFFER);
